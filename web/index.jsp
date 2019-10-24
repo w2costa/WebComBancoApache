@@ -13,16 +13,13 @@
     </head>
     <body>
         <div>
-            <form action="pagina2.jsp" method="GET">
+            <form action="salvar.jsp" method="POST">
                 <p>Nome: <input type="text" name="nome" value="" size="50" /></p>
-                <p><input type="submit" value="Enviar" name="botao" /></p>
+                <p><input type="submit" value="Salvar" name="botao" /></p>
             </form>
         </div>
         <div>
-            <a href="first.jsp" >Página da Sorte</a>
-        </div>
-        <div>
-            <a href="echo.jsp" >Teste de lista de autores</a>
+            <a href="listagem.jsp" >Listagem de Clientes</a>
         </div>
     </body>
 </html>
