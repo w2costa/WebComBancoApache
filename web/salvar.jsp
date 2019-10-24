@@ -15,21 +15,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Programação para Web - Aula 03</title>
+        <title>Programação para Web - Aula 04</title>
     </head>
     <body>
+        <jsp:useBean id="cliente" scope="request" class="modelo.Cliente" />
+        <jsp:setProperty name="cliente" property="nome" />
         <%
             request.setCharacterEncoding("UTF-8");
             EntityManagerFactory emf = JpaUtil.getEmf();
             EntityManager em = emf.createEntityManager();
 
             em.getTransaction().begin();
-            Cliente c = new Cliente();
-            c.setNome(request.getParameter("nome"));
-            em.persist(c);
+            em.persist(cliente);
             em.getTransaction().commit();
             em.close();
         %>
-        <h2>Nome: <%= c.getNome()%> inserido no banco com sucesso.</h2>
+        <h2>Nome: <jsp:getProperty name="cliente" property="nome" /> inserido no banco com sucesso.</h2>
     </body>
 </html>
