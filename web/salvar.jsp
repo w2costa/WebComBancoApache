@@ -4,12 +4,7 @@
     Author     : wilson.adm
 --%>
 
-<%@page import="javax.persistence.EntityManagerFactory"%>
-<%@page import="javax.persistence.TypedQuery"%>
-<%@page import="modelo.Cliente"%>
-<%@page import="java.util.List"%>
-<%@page import="controle.JpaUtil"%>
-<%@page import="javax.persistence.EntityManager"%>
+<%@page import="controle.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,13 +17,8 @@
         <jsp:setProperty name="cliente" property="nome" />
         <%
             request.setCharacterEncoding("UTF-8");
-            EntityManagerFactory emf = JpaUtil.getEmf();
-            EntityManager em = emf.createEntityManager();
-
-            em.getTransaction().begin();
-            em.persist(cliente);
-            em.getTransaction().commit();
-            em.close();
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.salvar(cliente);
         %>
         <h2>Nome: <jsp:getProperty name="cliente" property="nome" /> inserido no banco com sucesso.</h2>
     </body>

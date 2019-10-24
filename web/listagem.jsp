@@ -4,12 +4,9 @@
     Author     : wilson
 --%>
 
+<%@page import="controle.ClienteDAO"%>
 <%@page import="modelo.Cliente"%>
 <%@page import="java.util.List"%>
-<%@page import="javax.persistence.Query"%>
-<%@page import="javax.persistence.EntityManager"%>
-<%@page import="javax.persistence.Persistence"%>
-<%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,20 +16,14 @@
     </head>
     <body>
         <%
-            request.setCharacterEncoding("utf-8");
-
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-            EntityManager em = emf.createEntityManager();
-
-            Query q = em.createQuery("SELECT c FROM Cliente c");
-            List<Cliente> lista = q.getResultList();
+            ClienteDAO clienteDAO = new ClienteDAO();
+            
+            List<Cliente> lista = clienteDAO.listaClientes();
             for (Cliente c : lista) {
         %>
         <p>Nome: <%= c.getNome()%> </p>
         <%
             }
-
-            em.close();
         %>
     </body>
 </html>
