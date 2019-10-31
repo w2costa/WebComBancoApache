@@ -26,6 +26,14 @@ public class ClienteDAO {
     public void salvar(Cliente cliente) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        em.merge(cliente);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void criar(Cliente cliente) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         em.persist(cliente);
         em.getTransaction().commit();
         em.close();
@@ -37,6 +45,13 @@ public class ClienteDAO {
         List<Cliente> lista = q.getResultList();
         em.close();
         return lista;
+    }
+
+    public Cliente getCliente(int id) {
+        EntityManager em = emf.createEntityManager();
+        Cliente c = em.find(Cliente.class, id);
+        em.close();
+        return c;
     }
 
 }

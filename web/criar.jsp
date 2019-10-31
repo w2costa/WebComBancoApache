@@ -15,11 +15,10 @@
     <body>
         <jsp:useBean id="cliente" scope="request" class="modelo.Cliente" />
         <jsp:setProperty name="cliente" property="nome" />
-        <jsp:setProperty name="cliente" property="id" />
         <%
             request.setCharacterEncoding("UTF-8");
             ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.salvar(cliente);
+            clienteDAO.criar(cliente);
         %>
         <h2>Nome: <jsp:getProperty name="cliente" property="nome" /> inserido no banco com sucesso.</h2>
     </body>

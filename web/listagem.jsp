@@ -15,15 +15,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            ClienteDAO clienteDAO = new ClienteDAO();
-            
-            List<Cliente> lista = clienteDAO.listaClientes();
-            for (Cliente c : lista) {
-        %>
-        <p>Nome: <%= c.getNome()%> </p>
+
+        <table border="1">
+            <tr> 
+                <th>Nome</th> 
+                <th>Ação</th> 
+            </tr>
+            <%
+                ClienteDAO clienteDAO = new ClienteDAO();
+
+                List<Cliente> lista = clienteDAO.listaClientes();
+                for (Cliente c : lista) {
+            %>
+            <tr> 
+            <form action="editar.jsp" method="GET">
+                <input type="hidden" name="id" value="<%= c.getId()%>"/>
+                <td><%= c.getNome()%></td> 
+                <td><input type="submit" value="Editar"/></td>
+            </form>
+        </tr>
         <%
             }
         %>
-    </body>
+    </table>
+</body>
 </html>
